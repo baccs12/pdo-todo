@@ -20,9 +20,6 @@
     </form>
 </div>
 
-</body>
-</html>
-
 
 
 <?php
@@ -47,13 +44,25 @@ try {
 }
 
 
+
+?>
+<?php
 $sql = $link->query('SELECT * FROM MyGuests');
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-
 foreach($results as $result){
+?>
+<form name='jaeson' method='post' action='delete.php'>
+<?php
 echo "<table border = '1px'>";
-echo "<tr><td>" . $result[id] . "</td><td>" . $result["firstname"] . "</td><td>" . $result["lastname"] . "</td><td>" . $result["email"] . "</td><td>" . "<span><a href='#'>Delete</a></span>" . "<span><a href='#'>Update</a></span>" . "</td></tr>";
+
+echo "<tr><td>" . $result[id] . "</td><td>" . $result["firstname"] . "</td><td>" . $result["lastname"] . "</td><td>" . $result["email"] . "</td><td>" . "<button name='delete'>Delete</button>" . "<button name='update'>Update</button>" . "</td></tr>";
 }
+
+echo "</table>"
 
 
 ?>
+</form>
+
+</body>
+</html>
