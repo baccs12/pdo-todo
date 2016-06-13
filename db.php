@@ -47,20 +47,22 @@ try {
 
 ?>
 <?php
-$sql = $link->query('SELECT * FROM MyGuests');
-$results = $sql->fetchAll(PDO::FETCH_ASSOC);
-foreach($results as $result){
-?>
-<form name='jaeson' method='post' action='delete.php'>
-<?php
-echo "<table border = '1px'>";
-
-echo "<tr><td>" . $result[id] . "</td><td>" . $result["firstname"] . "</td><td>" . $result["lastname"] . "</td><td>" . $result["email"] . "</td><td>" . "<button name='delete'>Delete</button>" . "<button name='update'>Update</button>" . "</td></tr>";
-}
-
-echo "</table>"
-
-
+$sql= "SELECT * FROM MyGuests";
+        $stmt = $link->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        foreach($result as $row)
+        {
+            echo "<div class='wrapper'>
+            <form action='delete.php' method='POST' class='form-display'>";
+            echo "<input type='text' name='id' value='{$row['id']}'>";
+            echo "<input type='text' name='firstname' value='{$row['firstname']}'>";
+            echo "<input type='text' name='lastname' value='{$row['lastname']}'>";
+            echo "<input type='text' name='email' value='{$row['email']}'>";
+            echo "<button type='submit' name='update'>Update</button>";
+            echo "<button type='submit' name='delete'>Delete</button>";
+            echo "</form></div>";
+        }
 ?>
 </form>
 
