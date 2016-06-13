@@ -38,7 +38,6 @@ try {
     else{
     echo "<script type= 'text/javascript'>alert('Data not successfully Inserted.');</script>";
     }
-
     $dbh = null;
     }
     catch(PDOException $e)
@@ -46,5 +45,7 @@ try {
     echo $e->getMessage();
     }
 }
+
+
 
 ?>
